@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%;">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%;margin: 0">
+  <div id="container" style="height: 100%;"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+      title: {
+        text: '最近7天设备参数量',
+        left: '50%',
+        show: true,
+        textAlign: 'center',
+        textStyle: {
+          color: 'white'
+        },
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            lineStyle: {
+                color: '#ddd'
+            }
+        },
+        backgroundColor: 'rgba(255,255,255,1)',
+        padding: [5, 10],
+        textStyle: {
+            color: '#7588E4',
+        },
+        extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.3)'
+    },
+    legend: {
+        right: 20,
+        orient: 'vertical',
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2023-05-01', '2023-05-02', '2023-05-03', '2023-05-04', '2023-05-05', '2023-05-06','2023-05-07'],
+        boundaryGap: false,
+        splitLine: {
+            show: true,
+            interval: 'auto',
+            lineStyle: {
+                color: ['#D4DFF5']
+            }
+        },
+        axisTick: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#609ee9'
+            }
+        },
+        axisLabel: {
+            margin: 10,
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                color: ['#D4DFF5']
+            }
+        },
+        axisTick: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#609ee9'
+            }
+        },
+        axisLabel: {
+            margin: 0,
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    series: [{
+        name: '访问量',
+        type: 'line',
+        smooth: true,
+        showSymbol: false,
+        symbol: 'circle',
+        symbolSize: 6,
+        data: ['1200', '1400', '808', '811', '626', '488', '1600'],
+        areaStyle: {
+            normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(216, 244, 247,1)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(216, 244, 247,1)'
+                }], false)
+            }
+        },
+        itemStyle: {
+            normal: {
+                color: '#58c8da'
+            }
+        },
+        lineStyle: {
+            normal: {
+                width: 3
+            }
+        }
+    }]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
